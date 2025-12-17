@@ -35,7 +35,7 @@ class ReportarProblemaFragment : Fragment() {
         btnReportar.setOnClickListener {
             reportarProblema()
             if (etDescripcion.text.toString().isNotEmpty() && etPlaca.text.toString().isNotEmpty()) {
-                val catalogomecanicoFragment = CatalogoMecanicoFragment()
+                val catalogomecanicoFragment = CatalogoMecanicoActivity()
                 parentFragmentManager.beginTransaction()
                     .replace(R.id.FragmentsInside, catalogomecanicoFragment)
                     .addToBackStack(null)
