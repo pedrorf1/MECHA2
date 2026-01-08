@@ -5,14 +5,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-
+//
 class NotasAdapter(
-    private val listaNotas: List<Nota>
+    private val listaNotas: MutableList<Nota>
 ) : RecyclerView.Adapter<NotasAdapter.NotaViewHolder>() {
 
     class NotaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val txtTitulo: TextView = itemView.findViewById(R.id.txtTitulo)
-        val txtDescripcion: TextView = itemView.findViewById(R.id.txtDescripcion)
+        val titulo: TextView = itemView.findViewById(R.id.titulo)
+        val descripcion: TextView = itemView.findViewById(R.id.descripcion)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotaViewHolder {
@@ -23,11 +23,15 @@ class NotasAdapter(
 
     override fun onBindViewHolder(holder: NotaViewHolder, position: Int) {
         val nota = listaNotas[position]
-        holder.txtTitulo.text = nota.titulo
-        holder.txtDescripcion.text = nota.descripcion
+        holder.titulo.text = nota.titulo
+        holder.descripcion.text = nota.descripcion
     }
 
-    override fun getItemCount(): Int {
-        return listaNotas.size
+    override fun getItemCount() = listaNotas.size
+
+    fun actualizarLista(nuevaLista: List<Nota>) {
+        listaNotas.clear()
+        listaNotas.addAll(nuevaLista)
+        notifyDataSetChanged()
     }
 }
